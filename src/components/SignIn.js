@@ -82,7 +82,7 @@ const SignIn = () => {
     <Fragment>
       {signInError && <Alert severity="error">{signInError}</Alert>}
       <div className={classes.signInContainer}>
-        <p className={classes.formTitle}>Create Account</p>
+        <p className={classes.formTitle}>Login</p>
         <hr />
         <form onSubmit={(e) => signInUser(e)}>
           <TextField
@@ -128,7 +128,7 @@ const SignIn = () => {
           </Grid>
         </form>
         <div className={classes.signUpSection}>
-          Already have an account?
+          Don't have an account?
           <Link to="/signup"> Sign Up</Link>
         </div>
       </div>
