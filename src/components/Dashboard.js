@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Dashboard = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, getUserDetails } = useAuth();
+  useEffect(()=>{
+    getUserDetails()
+  },[])
   const [logoutError, setLogoutError] = useState();
   const history = useHistory();
   const classes = useStyles();
@@ -38,8 +41,9 @@ const Dashboard = () => {
   return (
     <div className={classes.dashboardContainer}>
       {logoutError && <Alert severity="error">{logoutError}</Alert>}
+
       <Card>
-        <CardContent>Welcome {currentUser.email} This is your email</CardContent>
+        <CardContent>Welcome <b>{currentUser.name}</b>. This is your email { currentUser.email } </CardContent>
         <CardActions>
           <Button variant="contained" color="secondary" size="small" onClick={logoutUser}>
             Log Out

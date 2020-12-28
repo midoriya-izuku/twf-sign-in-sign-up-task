@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
+import Grid from '@material-ui/core/Grid';
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -60,7 +61,7 @@ const SignIn = () => {
 
     const history = useHistory()
     
-    const { signin } = useAuth()
+    const { signin, getUserDetails } = useAuth()
 
     const onInputChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,7 +74,7 @@ const SignIn = () => {
           await signin(email, password);
           history.push("/")
         } catch (err) {
-          setSignInError("Unable to create an account");
+          setSignInError(err.message);
         }
         setLoading(false)
       };  
@@ -111,15 +112,27 @@ const SignIn = () => {
               value={password}
               autoComplete="new-password"
             />
-            <Button
-              disabled={isFormEmpty || loading}
-              variant="contained"
-              fullWidth={true}
-              color="primary"
-              type="submit"
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Button
+                    disabled={isFormEmpty || loading}
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                  >
+                    Sign In
+                </Button>
+                </Grid>
+                <Grid item xs={6}>
+                <Link
+              to="/forgot-password"
             >
-              Sign Up
-            </Button>
+              Forgot Password?
+            </Link>
+                </Grid>
+              </Grid>
+            
+            
           </form>
           <div className={classes.signUpSection}>
             Already have an account?

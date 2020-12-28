@@ -1,8 +1,9 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase'
 import 'firebase/auth'
   var firebaseConfig = {
     apiKey: "AIzaSyAyeY9w-8M8Zrm3-xtJQFBump83HKuPC2M",
     authDomain: "twf-sign-in-and-sign-up-task.firebaseapp.com",
+    databaseURL: "https://twf-sign-in-and-sign-up-task-default-rtdb.firebaseio.com",
     projectId: "twf-sign-in-and-sign-up-task",
     storageBucket: "twf-sign-in-and-sign-up-task.appspot.com",
     messagingSenderId: "1077146776528",

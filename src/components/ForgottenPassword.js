@@ -67,8 +67,8 @@ export default function ForgottenPassword() {
       setLoading(true)
       await resetPassword(email)
       setMessage("Check your inbox for further instructions")
-    } catch {
-      setError("Failed to reset password")
+    } catch(err) {
+      setError(err.message)
     }
 
     setLoading(false)
@@ -79,7 +79,7 @@ export default function ForgottenPassword() {
       <Card>
         <CardContent>
           <h2>Password Reset</h2>
-          {error && <Alert severity="danger">{error}</Alert>}
+          {error && <Alert severity="error">{error}</Alert>}
           {message && <Alert severity="success">{message}</Alert>}
           <hr/>
           <form onSubmit={(e) => resetUsersPassword(e)}>

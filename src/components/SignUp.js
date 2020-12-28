@@ -47,6 +47,7 @@ const SignUp = () => {
   });
 
   const [formData, setFormData] = useState({
+    name:"",
     email: "",
     password: "",
     rePassword: "",
@@ -67,15 +68,20 @@ const SignUp = () => {
 
   const history = useHistory();
   
-  const { signup } = useAuth();
+  const { signup, addUser } = useAuth();
 
   const [signUpError, setSignUpError] = useState();
 
-  const { email, password, rePassword } = formData;
+  const { name,email, password, rePassword } = formData;
 
   const validate = () => {
-    let errors = { password: "", rePassword: "", email: "" };
-    
+    let errors = { name:"", password: "", rePassword: "", email: "" };
+    if(name.length > 0&& name.length < 3){
+      errors.name = 'Name should be at least 3 characters long';
+  } 
+  else{
+    errors.name = ''
+}
     if (password.length > 0 && password.length < 8) {
       errors.password = "Password should be at least 8 characters long";
     } else {
@@ -100,14 +106,15 @@ const SignUp = () => {
     e.preventDefault();
     try {
       setLoading(true)
-      await signup(email, password);
+      const userObj = await signup(email, password);
+      await addUser(name,email,userObj)
       history.push("/")
     } catch (err) {
-      setSignUpError("Unable to create an account");
+      setSignUpError(err.message);
     }
     setLoading(false)
   };
-
+  
   const isValidated = !Object.values(formErrors).some(
     (x) => x !== null && x !== ""
   );
@@ -124,6 +131,8 @@ const SignUp = () => {
         <p className={classes.formTitle}>Create Account</p>
         <hr />
         <form onSubmit={(e) => signUpUser(e)}>
+        <TextField fullWidth={true} error={formErrors.name.length > 0?true:false} className={classes.formInput} id="name" required name="name" label="Name" variant="outlined" onChange={(e)=>onInputChange(e)}  helperText={formErrors.name} autoComplete="name"/>
+
           <TextField
             type="email"
             fullWidth={true}
