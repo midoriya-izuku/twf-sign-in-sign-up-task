@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Twf Sign In/Sign Up App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Getting Started
+
+### `npm install` 
+To install all packages.
+### `npm start` 
+To run the project
+
+## General Info
+SignIn Screen - User can sign in if they already are registered if not an error is shown
+
+Sign Up Screen - User can sign up with a new email. If email is already registered error will be shown.
+
+Forgotten Password - User is allowed to reset password
+
+Dashboard - Dashboard displays the user name and email id obtained during first login
 
 ## Available Scripts
 
