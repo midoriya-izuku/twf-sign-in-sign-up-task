@@ -6,7 +6,7 @@ import Alert from "@material-ui/lab/Alert";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 const useStyles = makeStyles((theme) => ({
-  registerContainer: {
+  signUpContainer: {
     top: "50vh",
     left: "50vw",
     transform: "translate(-50%, -50%)",
@@ -107,7 +107,7 @@ const SignUp = () => {
     (x) => x !== null && x !== ""
   );
 
-  const isFormEmpty = !Object.values(formData).some(
+  const isFormEmpty = !Object.values(formData).every(
     (x) => x !== null && x !== ""
   );
 
@@ -115,7 +115,7 @@ const SignUp = () => {
   return (
     <Fragment>
       {signUpError && <Alert severity="error">{signUpError}</Alert>}
-      <div className={classes.registerContainer}>
+      <div className={classes.signUpContainer}>
         <p className={classes.formTitle}>Create Account</p>
         <hr />
         <form onSubmit={(e) => signUpUser(e)}>
@@ -176,7 +176,7 @@ const SignUp = () => {
         </form>
         <div className={classes.logInSection}>
           Already have an account?
-          <Link to="/login"> Sign In</Link>
+          <Link to="/signin"> Sign In</Link>
         </div>
       </div>
     </Fragment>
