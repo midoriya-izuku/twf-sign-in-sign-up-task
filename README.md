@@ -2,11 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Getting Started
+## Getting Started
 
 Use npm install to install all packages.
 
-##General Info
+## General Info
 SignIn Screen - User can sign in if they already are registered if not an error is shown
 
 Sign Up Screen - User can sign up with a new email. If email is already registered error will be shown.
