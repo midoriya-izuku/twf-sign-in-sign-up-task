@@ -47,13 +47,13 @@ const SignUp = () => {
   });
 
   const [formData, setFormData] = useState({
-    name:"",
+    name: "",
     email: "",
     password: "",
     rePassword: "",
   });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const isInitialMount = useRef(true); //when the component is initially mounted set useRef to true
 
@@ -67,21 +67,20 @@ const SignUp = () => {
   }, [formData]); //as soon as form Input changes validate the input
 
   const history = useHistory();
-  
+
   const { signup, addUser } = useAuth();
 
   const [signUpError, setSignUpError] = useState();
 
-  const { name,email, password, rePassword } = formData;
+  const { name, email, password, rePassword } = formData;
 
   const validate = () => {
-    let errors = { name:"", password: "", rePassword: "", email: "" };
-    if(name.length > 0&& name.length < 3){
-      errors.name = 'Name should be at least 3 characters long';
-  } 
-  else{
-    errors.name = ''
-}
+    let errors = { name: "", password: "", rePassword: "", email: "" };
+    if (name.length > 0 && name.length < 3) {
+      errors.name = "Name should be at least 3 characters long";
+    } else {
+      errors.name = "";
+    }
     if (password.length > 0 && password.length < 8) {
       errors.password = "Password should be at least 8 characters long";
     } else {
@@ -105,16 +104,16 @@ const SignUp = () => {
   const signUpUser = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
       const userObj = await signup(email, password);
-      await addUser(name,email,userObj)
-      history.push("/")
+      await addUser(name, email, userObj);
+      history.push("/");
     } catch (err) {
       setSignUpError(err.message);
     }
-    setLoading(false)
+    setLoading(false);
   };
-  
+
   const isValidated = !Object.values(formErrors).some(
     (x) => x !== null && x !== ""
   );
@@ -131,7 +130,19 @@ const SignUp = () => {
         <p className={classes.formTitle}>Create Account</p>
         <hr />
         <form onSubmit={(e) => signUpUser(e)}>
-        <TextField fullWidth={true} error={formErrors.name.length > 0?true:false} className={classes.formInput} id="name" required name="name" label="Name" variant="outlined" onChange={(e)=>onInputChange(e)}  helperText={formErrors.name} autoComplete="name"/>
+          <TextField
+            fullWidth={true}
+            error={formErrors.name.length > 0 ? true : false}
+            className={classes.formInput}
+            id="name"
+            required
+            name="name"
+            label="Name"
+            variant="outlined"
+            onChange={(e) => onInputChange(e)}
+            helperText={formErrors.name}
+            autoComplete="name"
+          />
 
           <TextField
             type="email"

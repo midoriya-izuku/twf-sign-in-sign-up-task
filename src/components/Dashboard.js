@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Dashboard = () => {
   const { currentUser, logout, getUserDetails } = useAuth();
-  useEffect(()=>{
-    getUserDetails()
-  },[])
+  useEffect(() => {
+    getUserDetails();
+  }, []);
   const [logoutError, setLogoutError] = useState();
   const history = useHistory();
   const classes = useStyles();
@@ -43,9 +43,17 @@ const Dashboard = () => {
       {logoutError && <Alert severity="error">{logoutError}</Alert>}
 
       <Card>
-        <CardContent>Welcome <b>{currentUser.name}</b>. This is your email { currentUser.email } </CardContent>
+        <CardContent>
+          Welcome <b>{currentUser.name}</b>. This is your email{" "}
+          {currentUser.email}{" "}
+        </CardContent>
         <CardActions>
-          <Button variant="contained" color="secondary" size="small" onClick={logoutUser}>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={logoutUser}
+          >
             Log Out
           </Button>
         </CardActions>
