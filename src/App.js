@@ -6,7 +6,10 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ForgottenPassword from './components/ForgottenPassword';
 import Dashboard from './components/Dashboard';
-
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,7 +18,6 @@ const theme = createMuiTheme({
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
     contrastThreshold: 3,
@@ -25,14 +27,22 @@ const theme = createMuiTheme({
 function App() {
   
   return (
-    <Fragment>
-      <ThemeProvider theme={theme}>
-        <SignIn/>
-        <SignUp/>
-        <Dashboard/>
-        <ForgottenPassword/>
-      </ThemeProvider>
-    </Fragment>
+    <Container>
+      <Box minHeight="100vh">
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+        <Router>
+          <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/forgot-password" component={ForgottenPassword} />
+          </Switch>
+        </Router>
+        </ThemeProvider>
+      </AuthProvider>
+      </Box>
+    </Container>
      
   );
 }
