@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import { Fragment } from 'react'
 import './App.css';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import ForgottenPassword from './components/ForgottenPassword';
+import Dashboard from './components/Dashboard';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ff4400',
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  },
+});
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <ThemeProvider theme={theme}>
+        <SignIn/>
+        <SignUp/>
+        <Dashboard/>
+        <ForgottenPassword/>
+      </ThemeProvider>
+    </Fragment>
+     
   );
 }
 
