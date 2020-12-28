@@ -8,7 +8,7 @@ import { useAuth } from "../contexts/AuthContext";
 const useStyles = makeStyles((theme) => ({
   signUpContainer: {
     top: "50vh",
-    left: "50vw",
+    left: "50%",
     transform: "translate(-50%, -50%)",
     position: "relative",
     padding: "1.3em",
