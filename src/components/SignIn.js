@@ -50,6 +50,8 @@ const SignIn = () => {
 
     const [signInError, setSignInError] = useState();
 
+    const [loading, setLoading] = useState(false)
+
     const isFormEmpty = !Object.values(formData).every(
       (x) => x !== null && x !== ""
     );
@@ -67,11 +69,13 @@ const SignIn = () => {
     const signInUser = async (e) => {
         e.preventDefault();
         try {
+          setLoading(true)
           await signin(email, password);
           history.push("/")
         } catch (err) {
           setSignInError("Unable to create an account");
         }
+        setLoading(false)
       };  
 
     return (
@@ -108,7 +112,7 @@ const SignIn = () => {
               autoComplete="new-password"
             />
             <Button
-              disabled={isFormEmpty}
+              disabled={isFormEmpty || loading}
               variant="contained"
               fullWidth={true}
               color="primary"

@@ -51,6 +51,9 @@ const SignUp = () => {
     password: "",
     rePassword: "",
   });
+
+  const [loading, setLoading] = useState(false)
+
   const isInitialMount = useRef(true); //when the component is initially mounted set useRef to true
 
   useEffect(() => {
@@ -96,11 +99,13 @@ const SignUp = () => {
   const signUpUser = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       await signup(email, password);
       history.push("/")
     } catch (err) {
       setSignUpError("Unable to create an account");
     }
+    setLoading(false)
   };
 
   const isValidated = !Object.values(formErrors).some(
@@ -165,7 +170,7 @@ const SignUp = () => {
             autoComplete="off"
           />
           <Button
-            disabled={isFormEmpty || !isValidated}
+            disabled={isFormEmpty || !isValidated || loading}
             variant="contained"
             fullWidth={true}
             color="primary"
