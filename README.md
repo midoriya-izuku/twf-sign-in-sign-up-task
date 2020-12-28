@@ -4,7 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Getting Started
 
-Use npm install to install all packages.
+Use ### `npm install` to install all packages.
+Use ### `npm start` to run the project
 
 ## General Info
 SignIn Screen - User can sign in if they already are registered if not an error is shown
