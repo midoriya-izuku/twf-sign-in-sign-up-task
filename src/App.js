@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import PrivateRoute from './components/PrivateRoute';
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -33,7 +34,7 @@ function App() {
         <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-              <Route exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/" component={Dashboard} />
               <Route path="/signup" component={SignUp} />
               <Route path="/signin" component={SignIn} />
               <Route path="/forgot-password" component={ForgottenPassword} />
